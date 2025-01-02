@@ -1,0 +1,34 @@
+{
+  "name": "devtree",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "DevTree project for study purposes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fgamester/devtree-express-front.git"
+  },
+  "keywords": [
+    "tree",
+    "practice",
+    "express",
+    "social",
+    "media"
+  ],
+  "author": "Franco Alvarez @fgamester",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fgamester/devtree-express-front/issues"
+  },
+  "homepage": "https://github.com/fgamester/devtree-express-front#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
