@@ -3,6 +3,14 @@
 Hello there👋🏼👋🏼👋🏼  
 I was curious about learning Express, so i decided to develop this project that allow you to create an account on it and unify all your social media.
 
+Important: This is Only the Backend side.
+
+Used Technologies:
+-TypeScript
+-Express
+-Mongoose
+-MongoDB
+
 ## You want to try it?
 
 ### Try the deployed project on Vercel
