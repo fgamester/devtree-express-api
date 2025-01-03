@@ -7,7 +7,7 @@ const app = express()
 
 connectDB()
 
-// Allowing read form data
+// permitimos la lectura de las request en formato json
 app.use(express.json())
 
 app.use('/api', router)

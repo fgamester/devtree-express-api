@@ -6,7 +6,7 @@
             "ESNext"
         ],
         "target": "ESNext",
-        "moduleResolution": "NodeNext",
+        "moduleResolution": "nodenext",
         "module": "NodeNext",
         "strict": false,
         "sourceMap": true,

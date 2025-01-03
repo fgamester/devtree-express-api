@@ -1,7 +1,8 @@
+import colors from 'colors'
 import server from './server'
 
 const port = process.env.PORT || 4000
 
 server.listen(port, () => {
-    console.log('SERVER IS RUNNING AT PORT:', port) 
+    console.log(colors.blue.bold(`SERVER IS RUNNING AT PORT: ${port}`)) 
 })

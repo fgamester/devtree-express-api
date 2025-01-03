@@ -6,10 +6,10 @@ I was curious about learning Express, so i decided to develop this project that 
 Important: This is Only the Backend side.
 
 Used Technologies:
--TypeScript
--Express
--Mongoose
--MongoDB
+-TypeScript  
+-Express  
+-Mongoose  
+-MongoDB  
 
 ## You want to try it?
 
