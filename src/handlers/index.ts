@@ -1,6 +1,8 @@
 import { Request, Response } from "express"
-import User from "../models/User"
+import { validationResult } from "express-validator"
 import { hashPassword } from "../utils/auth"
+import slug from 'slug'
+import User from "../models/User"
 
 /* json response template
 resp.status(200).json({
@@ -11,24 +13,12 @@ resp.status(200).json({
 export const createAccount = async (req: Request, resp: Response) => {
     const { email, name, password } = req.body
 
-    // Fields validation
-    if (!email) {
+    let errors = validationResult(req)
+    if (!errors.isEmpty()) {
         resp.status(400).json({
-            status: "error",
-            message: "Email is required"
+            errors: errors.array()
         })
-        return;
-    } else if (!name) {
-        resp.status(400).json({
-            status: "error",
-            message: "Name is required"
-        })
-        return;
-    } else if (!password) {
-        resp.status(400).json({
-            status: "error",
-            message: "Password is required"
-        })
+        console.log(errors)
         return;
     }
 

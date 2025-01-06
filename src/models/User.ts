@@ -5,6 +5,7 @@ interface IUser {
     name: string
     email: string
     password: string
+    handle: string
 }
 
 // Se crea el esquema que tendrá nuestro modelo User
@@ -24,6 +25,13 @@ const userSchema = new Schema({
         type: String,
         required: true,
         trim: true
+    },
+    handle:{
+        type: String,
+        required: true,
+        trim: true,
+        lowercase: true,
+        unique: true
     }
 })
 
