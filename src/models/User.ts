@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 
-// Declaramos nuestra interface IUser
+// Declare the TS interface that our model Users will have
 interface IUser {
     name: string
     email: string
@@ -8,7 +8,7 @@ interface IUser {
     handle: string
 }
 
-// Se crea el esquema que tendrá nuestro modelo User
+// Create the schema that our Users DB will have
 const userSchema = new Schema({
     name: {
         type: String,
