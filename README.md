@@ -5,7 +5,7 @@ I was curious about learning Express, so I decided to develop this project that 
 
 Important: This is Only the API and will require some enviroment settings to correct funcionality.
 
-### Used Technologies:  
+### Used Technologies:
 **-TypeScript:** The language in wich the code will be.
 
 **-Express:** Framework used to manage the requests.
@@ -18,7 +18,7 @@ Important: This is Only the API and will require some enviroment settings to cor
 
 **-slug:** A library that converts strings into URL-friendly slugs by removing special characters, spaces, and converting to lowercase.
 
-**-express validator:** A library for validating and sanitizing inputs in Express applications.
+**-express-validator:** A library for validating and sanitizing inputs in Express applications.
 
 ## You want to try it?
 
@@ -29,7 +29,7 @@ Important: This is Only the API and will require some enviroment settings to cor
 
 First of all you need to clone the repository :
 ```bash
-$ git clone https://github.com/fgamester/devtree-express-api
+$ git clone https://github.com/fgamester/devtree-express-api.git
 ```
 Then run the packages installation command:
 ```bash

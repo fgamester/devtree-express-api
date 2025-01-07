@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fgamester/devtree-express-front.git"
+    "url": "git+https://github.com/fgamester/devtree-express-api"
   },
   "keywords": [
     "tree",
@@ -23,9 +23,9 @@
   "author": "Franco Alvarez @fgamester",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fgamester/devtree-express-front/issues"
+    "url": "https://github.com/fgamester/devtree-express-api/issues"
   },
-  "homepage": "https://github.com/fgamester/devtree-express-front#readme",
+  "homepage": "https://github.com/fgamester/devtree-express-api#readme",
   "dependencies": {
     "@types/mongoose": "^5.11.97",
     "bcrypt": "^5.1.1",
