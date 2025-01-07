@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { body } from 'express-validator';
 import { createAccount, login } from './handlers';
+import { handleInputErrors } from './middleware/validation';
 const router = Router();
 
 //** Authentication and Register */
@@ -24,10 +25,11 @@ router.post('/auth/register',
     body('handle')
         .notEmpty()
         .withMessage("The Handle is required"),
+    handleInputErrors,
     createAccount
 );
 
-router.post('auth/login',
+router.post('/auth/login',
     body('email')
         .notEmpty()
         .withMessage("The Email is required")
@@ -37,6 +39,7 @@ router.post('auth/login',
     body('password')
         .notEmpty()
         .withMessage("The Password is required"),
+    handleInputErrors,
     login
 );
 

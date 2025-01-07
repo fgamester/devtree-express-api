@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { validationResult } from "express-validator";
 import colors from 'colors';
-import { hashPassword } from "../utils/auth";
+import { hashPassword, checkPassword } from "../utils/auth";
 import slug from 'slug';
 import User from "../models/User";
 
@@ -17,26 +17,16 @@ interface CustomError {
     msg: string,
     param?: string,
     location?: string
-}
+};
 
 export const createAccount = async (req: Request, resp: Response) => {
     const { email, handle, password } = req.body;
-    const sluggedHandle = slug(handle);
+    const sluggedHandle = slug(handle); // Slug the handle to make it URL-friendly
 
     // These variables will contain the request errors
-    const badRequestErrors = validationResult(req);
     const conflictErrors: CustomError[] = [];
 
-    // Validate if the request has errors and respond with a 400 status if it does
-    if (!badRequestErrors.isEmpty()) {
-        resp.status(400).json({
-            errors: badRequestErrors.array().map(error => error.msg)
-        });
-        console.log(badRequestErrors);
-        return;
-    }
-
-    // Available validations
+    // Availability validations
     const emailExists = await User.findOne({ email: email })
     if (emailExists) {
         conflictErrors.push({
@@ -56,6 +46,7 @@ export const createAccount = async (req: Request, resp: Response) => {
         });
     }
 
+    // Respond with a 409 status code if some unique field is taken
     if (conflictErrors.length > 0) {
         resp.status(409).json({
             errors: conflictErrors.map(error => error.msg)
@@ -77,26 +68,21 @@ export const createAccount = async (req: Request, resp: Response) => {
     console.log({
         msg: 'User created',
         user: user
-    })
-}
+    });
+};
 
 export const login = async (req: Request, resp: Response) => {
     const { email, password } = req.body;
+    console.log('trying login...')
 
-    const badRequestErrors = validationResult(req);
     const unauthorizedErrors: CustomError[] = [];
 
-    if (!badRequestErrors.isEmpty()) {
-        resp.status(400).json({
-            errors: badRequestErrors.array().map(error => error.msg)
-        });
-        console.log(badRequestErrors);
-        return;
-    }
     // Unauthorized errors handling
-    const emailExists = User.findOne({ email: email });
+    const user = await User.findOne({ email: email });
+    const isPasswordCorrect = await checkPassword(password, user.password);
 
-    if (emailExists) {
+    // Email handling
+    if (!user) {
         unauthorizedErrors.push({
             value: email,
             msg: "Email doesn't match with any user",
@@ -105,6 +91,17 @@ export const login = async (req: Request, resp: Response) => {
         });
     }
 
+    // Password handling
+    if (!isPasswordCorrect) {
+        unauthorizedErrors.push({
+            value: password,
+            msg: "Wrong password",
+            param: 'password',
+            location: 'body'
+        });
+    }
+
+    // In case there are an Unautorized Error, we send a 401 status
     if (unauthorizedErrors.length > 0) {
         resp.status(401).json({
             error: "The credentials are incorrect"
@@ -112,4 +109,22 @@ export const login = async (req: Request, resp: Response) => {
         console.log(unauthorizedErrors);
         return;
     }
-}
+
+    // if it is all okay, repond with the needed user information
+    resp.status(200).json({
+        msg: 'Login successful',
+        user: {
+            name: user.name,
+            email: user.email,
+            handle: user.handle
+        }
+    });
+    console.log({
+        msg: 'Login successful',
+        user: {
+            name: user.name,
+            email: user.email,
+            handle: user.handle
+        }
+    });
+};
