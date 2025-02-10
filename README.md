@@ -22,7 +22,7 @@ Important: This is Only the API and will require some enviroment settings to cor
 
 ## You want to try it?
 
-### Try the deployed project on Vercel
+### Try the deployed project with a request app
 *In progress...*
 
 ### Get the repository to your local workspace
